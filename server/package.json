@@ -1,0 +1,30 @@
+{
+  "name": "github_api_conrad",
+  "version": "1.0.0",
+  "description": "Coding challenge for Conrad Connect",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --colors --progress"
+  },
+  "author": "Brenno Ferreira",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "lodash": "^4.17.10"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "raw-loader": "^0.5.1",
+    "source-map-support": "^0.5.8",
+    "start-server-webpack-plugin": "^2.2.5",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
