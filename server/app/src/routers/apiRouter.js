@@ -1,23 +1,23 @@
 import express from 'express'
 
-export const apiRouter = express.Router()
+const apiRouter = express.Router()
 
 // Test Data
 const repos = [
   {
-    id: '121gfd',
-    name: 'React',
-    stars: 9000
+    id: 2126244,
+    name: 'bootstrap',
+    stargazers_count: 126675
   },
   {
-    id: '124g',
-    name: 'ReactDOM',
-    stars: 8000
+    id: 2126244,
+    name: 'bootstrap',
+    stargazers_count: 126675
   },
   {
-    id: '12312vc',
-    name: 'React-Redux',
-    stars: 5000
+    id: 2126244,
+    name: 'bootstrap',
+    stargazers_count: 126675
   }
 ]
 
@@ -35,3 +35,5 @@ apiRouter.put('/bookmark/:id', (req, res) => {
 apiRouter.get('/bookmark', (req, res) => {
   res.send('Returning all bookmarks')
 })
+
+export default apiRouter
