@@ -1,5 +1,11 @@
 import React from "react"
 
+// Redux
+import { connect } from "react-redux"
+
+// Actions
+import { fetchRepos } from "../actions/repos"
+
 // local styles
 const styles = {
   error: {
@@ -63,4 +69,8 @@ class SearchForm extends React.PureComponent {
   }
 }
 
-export default SearchForm
+const mapDispatchToProps = dispatch => ({
+  onFetchRepos: fetchRepos
+})
+
+export default connect(null, mapDispatchToProps)(SearchForm)

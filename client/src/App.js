@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+
+
 // Components
 import SearchForm from "./components/SearchForm"
 
@@ -22,7 +24,7 @@ class App extends Component {
       container: {
         // display: 'flex',
         // flexWrap: 'wrap',
-        height: '100vh',
+
         background: '#1e1e1e',
         color: '#fff'
       },
