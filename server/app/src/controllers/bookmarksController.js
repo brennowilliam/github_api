@@ -1,6 +1,6 @@
 import _ from "lodash"
 
-export default class BookmarksController {
+class BookmarksController {
   constructor() {
     this.bookmarks = []
   }
@@ -31,3 +31,5 @@ export default class BookmarksController {
     }
   }
 }
+
+export default new BookmarksController()
