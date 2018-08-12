@@ -18,9 +18,10 @@ const reposController = {
         const results = _.map(response.data.items, repo => {
           return {
             id: repo.id,
-            name: repo.name,
             fullName: repo.full_name,
-            stars: repo.stargazers_count
+            stars: repo.stargazers_count,
+            owner: repo.owner.login,
+            forks: repo.forks_count
           }
         })
         res.status(200).json({ results })
