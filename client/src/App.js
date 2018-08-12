@@ -1,26 +1,49 @@
 import React, { Component } from 'react';
 
+// Components
+import SearchForm from "./components/SearchForm"
+
 class App extends Component {
   state = {
-    response: []
+    repos: [],
+    loading: true
   }
 
   componentDidMount() {
-    this.callApi()
-      .then(response => this.setState(() => ({ response })))
+    // this.callApi()
+    //   .then(response => this.setState(() => ({ response })))
   }
 
   callApi = async () => await fetch('search/r').then(res => res.json())
 
   render() {
+    // Some local styles
+    const styles = {
+      container: {
+        // display: 'flex',
+        // flexWrap: 'wrap',
+        height: '100vh',
+        background: '#1e1e1e',
+        color: '#fff'
+      },
+      header: {
+
+      }
+    }
+
     const repos = this.state.response
     return (
-      <div>
-        <ul>
+      <div style={styles.container}>
+        <div style={styles.header}>
+          <h1> GitHub Repos Project </h1>
+          <h3> By Brenno Ferreira </h3>
+        </div>
+        <SearchForm />
+        {/* <ul>
           {
             repos.map(res => <li>{res.name}</li> )
           }
-        </ul>
+        </ul> */}
       </div>
     );
   }
