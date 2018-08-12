@@ -33,9 +33,7 @@ class SearchForm extends React.PureComponent {
       }))
     } else {
       this.setState(() => ({ error: '' }))
-      this.props.onSubmit({
-        repoName: this.state.repoName
-      })
+      this.props.onFetchRepos({ repoName: this.state.repoName })
     }
   }
 
@@ -70,7 +68,9 @@ class SearchForm extends React.PureComponent {
 }
 
 const mapDispatchToProps = dispatch => ({
-  onFetchRepos: fetchRepos
+  onFetchRepos: repoName => {
+    dispatch(fetchRepos(repoName))
+  }
 })
 
 export default connect(null, mapDispatchToProps)(SearchForm)

@@ -1,3 +1,6 @@
-export const fetchRepos = ( repoName ) => ({
-  type: "FETCH_REPOS"
-})
+export const fetchRepos = ( payload ) => {
+  return  {
+    type: "FETCH_REPOS",
+    payload
+  }
+}
