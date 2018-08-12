@@ -4,31 +4,23 @@ import { connect } from "react-redux"
 
 // Components
 import SearchForm from "./components/SearchForm"
+import RepoList from "./components/RepoList"
 
 // Actions
 import { fetchRepos } from "./actions/repos"
 
 class App extends Component {
   state = {
-    repos: [],
-    loading: true
+    loading: false
   }
-
-  componentDidMount() {
-    // this.callApi()
-    //   .then(response => this.setState(() => ({ response })))
-  }
-
-  // callApi = async () => await fetch('search/r').then(res => res.json())
 
   handleOnSubmit = async (searchTerm) => {
     await fetch(`api/search/${searchTerm}`)
       .then(response => response.json())
-      .then(response => this.props.onFetchRepos(response))
+      .then(response => this.props.onFetchRepos(response.results))
   }
 
   render() {
-    // Some local styles
     const styles = {
       container: {
         // display: 'flex',
@@ -40,11 +32,11 @@ class App extends Component {
         color: '#fff'
       },
       header: {
-        textAlign: 'center'
+        textAlign: 'center',
+        borderBottom: '1px solid #8BDDF7'
       }
     }
 
-    const repos = this.state.response
     return (
       <div style={styles.container}>
         <div style={styles.header}>
@@ -52,10 +44,27 @@ class App extends Component {
           <h3> By Brenno Ferreira </h3>
         </div>
         <SearchForm onSubmit={this.handleOnSubmit}/>
+        <RepoList />
+        {/* <div>
+          <h3> Results </h3>
+          <ul>
+            {
+              this.props.repos.map(repo => {
+                <li>
+                  { repo }
+                </li>
+              })
+            }
+          </ul>
+        </div> */}
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  repos: state.repos
+})
 
 const mapDispatchToProps = dispatch => ({
   onFetchRepos: repos => {
@@ -63,4 +72,4 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -11,9 +11,6 @@ import { Provider } from "react-redux"
 import "normalize.css/normalize.css"
 
 const store = configureStore()
-store.subscribe(() => {
-  const state = store.getState();
-});
 
 ReactDOM.render(
   <Provider store={store}>
