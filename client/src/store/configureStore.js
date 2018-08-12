@@ -13,7 +13,7 @@ export default () => {
       repos: reposReducer,
       bookmarks: bookmarksReducer
     }),
-    ApplyMiddleware(logger)
+    applyMiddleware(logger)
   )
 
   return store
