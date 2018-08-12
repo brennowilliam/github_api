@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-
-
+// Redux
+import { connect } from "react-redux"
 
 // Components
 import SearchForm from "./components/SearchForm"
+
+// Actions
+import { fetchRepos } from "./actions/repos"
 
 class App extends Component {
   state = {
@@ -16,20 +19,28 @@ class App extends Component {
     //   .then(response => this.setState(() => ({ response })))
   }
 
-  callApi = async () => await fetch('search/r').then(res => res.json())
+  // callApi = async () => await fetch('search/r').then(res => res.json())
+
+  handleOnSubmit = async (searchTerm) => {
+    await fetch(`api/search/${searchTerm}`)
+      .then(response => response.json())
+      .then(response => this.props.onFetchRepos(response))
+  }
 
   render() {
     // Some local styles
     const styles = {
       container: {
         // display: 'flex',
+        // flexDirection: 'row',
         // flexWrap: 'wrap',
-
+        // justifyContent: 'center',
+        height: '100vh',
         background: '#1e1e1e',
         color: '#fff'
       },
       header: {
-
+        textAlign: 'center'
       }
     }
 
@@ -40,10 +51,16 @@ class App extends Component {
           <h1> GitHub Repos Project </h1>
           <h3> By Brenno Ferreira </h3>
         </div>
-        <SearchForm onSubmit={(repoName) => console.log(repoName)}/>
+        <SearchForm onSubmit={this.handleOnSubmit}/>
       </div>
     );
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  onFetchRepos: repos => {
+    dispatch(fetchRepos(repos))
+  }
+})
+
+export default connect(null, mapDispatchToProps)(App);

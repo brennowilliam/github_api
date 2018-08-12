@@ -1,12 +1,9 @@
 import React from "react"
-
 // Redux
 import { connect } from "react-redux"
-
 // Actions
 import { fetchRepos } from "../actions/repos"
-
-// local styles
+// Local Styles
 const styles = {
   error: {
     color: '#f00',
@@ -33,7 +30,8 @@ class SearchForm extends React.PureComponent {
       }))
     } else {
       this.setState(() => ({ error: '' }))
-      this.props.onFetchRepos({ repoName: this.state.repoName })
+      this.props.onSubmit(this.state.repoName)
+      //this.props.onFetchRepos({ repoName: this.state.repoName })
     }
   }
 
@@ -43,7 +41,7 @@ class SearchForm extends React.PureComponent {
   }
 
   render() {
-    return (
+    return (  
       <div>
         {this.state.error && (
           <div style={styles.error}>
