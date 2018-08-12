@@ -31,7 +31,6 @@ class SearchForm extends React.PureComponent {
     } else {
       this.setState(() => ({ error: '' }))
       this.props.onSubmit(this.state.repoName)
-      //this.props.onFetchRepos({ repoName: this.state.repoName })
     }
   }
 
