@@ -38,12 +38,7 @@ class App extends Component {
           <h1> GitHub Repos Project </h1>
           <h3> By Brenno Ferreira </h3>
         </div>
-        <SearchForm />
-        {/* <ul>
-          {
-            repos.map(res => <li>{res.name}</li> )
-          }
-        </ul> */}
+        <SearchForm onSubmit={(repoName) => console.log(repoName)}/>
       </div>
     );
   }
