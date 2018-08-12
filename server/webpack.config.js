@@ -28,13 +28,6 @@ module.exports = {
             }
           ],
           exclude: /node_modules/
-        },
-        {
-          test: /\.(graphql|gql)$/,
-          exclude: /node_modules/,
-          use: {
-            loader: 'raw-loader'
-          }
         }
       ]
     },
