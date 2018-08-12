@@ -1,17 +1,9 @@
 // Libs
 import express from 'express'
-import bodyParser from "body-parser"
 
 // Utils
 import setupMiddleware from "./configMiddleware"
 import setupRouters from "./configRouters"
-
-// Routers
-import { globalRouter } from './routers/globalRouter'
-import { apiRouter } from './routers/apiRouter'
-
-// Fake a persistent storage for the bookmarks.
-const bookmarks = []
 
 const app = express()
 

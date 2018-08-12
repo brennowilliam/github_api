@@ -3,7 +3,7 @@ import apiRouter from "./routers/apiRouter"
 
 const setUpRouters = app => {
   app.use(globalRouter)
-  app.use(apiRouter)
+  app.use('/api', apiRouter)
 }
 
 export default setUpRouters
