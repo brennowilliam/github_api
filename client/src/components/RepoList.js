@@ -4,14 +4,8 @@ import { connect } from "react-redux"
 // Components
 import RepoListItem from "./RepoListItem"
 
-const styles = {
-  list: {
-    overflow: 'scroll'
-  }
-}
-
 const RepoList = props => (
-  <div style={styles.list}>
+  <div>
     <h3> Results: </h3>
     {
       props.repos.map(repo => (

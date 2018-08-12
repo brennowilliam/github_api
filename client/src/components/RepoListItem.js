@@ -1,8 +1,11 @@
 import React from "react"
 
-const RepoListItem = ({fullName, name, id, stars}) => (
+const RepoListItem = props => (
   <div>
-    { fullName }
+    <div>
+      Repo: {props.fullName} | Stars: {props.stars} | Owner: {props.owner} | Forks: {props.forks} 
+      <button>Bookmark</button>
+    </div>
   </div>
 )
 

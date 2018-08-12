@@ -5,7 +5,6 @@ import { connect } from "react-redux"
 // Components
 import SearchForm from "./SearchForm"
 import RepoList from "./RepoList"
-import Header from "./Header"
 
 // Actions
 import { fetchRepos } from "../actions/repos"
@@ -40,7 +39,6 @@ class App extends Component {
 
     return (
       <div>
-        <Header />
         <SearchForm onSubmit={this.handleOnSubmit} />
         {
           this.state.isLoading 
