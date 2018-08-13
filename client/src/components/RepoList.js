@@ -14,7 +14,7 @@ const RepoList = props => (
         <RepoListItem 
           onClick={props.onCreateBookmark} 
           key={repo.id} 
-          {...repo} 
+          repo={repo} 
         />
       ))
     }
@@ -26,8 +26,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onCreateBookmark: id => {
-    dispatch(apiCreateBookmark({ id }))
+  onCreateBookmark: payload => {
+    dispatch(apiCreateBookmark({ payload }))
   }
 })
 

@@ -29,7 +29,7 @@ function* fetchBookmarks(action) {
 
 function* createBookmark(action) {
   try {
-    yield call(createBookmarkApi, action.payload.id)
+    yield call(createBookmarkApi, action.payload)
     yield put({ type: 'API_CREATE_BOOKMARKS_SUCCEEDED' })
     // If succeed, we fetch and save in state.
     const data = yield call(fetchBookmarksFromApi)
@@ -44,7 +44,7 @@ function fetchBookmarksFromApi() {
     .then(response => response.json())
 }
 
-function createBookmarkApi(id) {
+function createBookmarkApi(payload) {
   return fetch(`api/bookmarks`, {
     method: "POST",
     mode: "cors",
@@ -54,16 +54,38 @@ function createBookmarkApi(id) {
     },
     redirect: "follow",
     referrer: "no-referrer",
-    body: JSON.stringify({ id })
+    body: JSON.stringify(payload)
   })
   .then(response => {
-    console.log(response)
     return response.json()
   })
 }
+
+function deleteBookmarkFromApi(id) {
+  return fetch(`api/bookmarks/${id}`, {
+    method: "DELETE",
+    mode: "cors",
+    cache: "no-cache",
+  })
+  .then(response => {
+    return response.json()
+  })
+}
+function* deleteBookmark(action) {
+  try {
+    yield call (deleteBookmarkFromApi, action.payload.id)
+    yield put({ type: "API_DELETE_BOOKMARK_SUCCEEDED" })
+    const data = yield call(fetchBookmarksFromApi)
+    yield put({ type: 'API_FETCH_BOOKMARKS_SUCCEEDED', payload: data })
+  } catch (error) {
+    yield put({ type: 'API_DELETE_BOOKMARK_FAILED', payload: error })
+  }
+}
+
 
 export default function* watcherSaga() {
   yield takeLatest('API_FETCH_REPOS_REQUESTED', fetchRepos)
   yield takeLatest('API_FETCH_BOOKMARKS_REQUESTED', fetchBookmarks)
   yield takeLatest('API_CREATE_BOOKMARK', createBookmark)
+  yield takeLatest('API_DELETE_BOOKMARK', deleteBookmark)
 }

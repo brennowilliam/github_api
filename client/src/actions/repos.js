@@ -30,6 +30,21 @@ export const apiFetchBookmarksFailed = (payload) => ({
   payload
 })
 
+export const apiDeleteBookmarkSucceeded = (payload) => ({
+  type: "API_DELETE_BOOKMARK_SUCCEEDED",
+  payload
+})
+
+export const apiDeleteBookmarkFailed = (payload) => ({
+  type: "API_DELETE_BOOKMARK_FAILED",
+  payload
+})
+
+export const apiDeleteBookmark = (payload) => ({
+  type: "API_DELETE_BOOKMARK",
+  payload
+})
+
 export const apiCreateBookmark = (payload) => ({
   type: "API_CREATE_BOOKMARK",
   payload
