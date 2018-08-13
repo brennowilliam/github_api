@@ -1,7 +1,10 @@
 import app from "./server"
 import { createServer } from 'http'
 
-const port = process.env.PORT || 3001
+// Config
+import config from "./config/config"
+
+const port = config.port
 
 const server = createServer(app)
 let currentApp = app

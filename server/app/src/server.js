@@ -1,6 +1,7 @@
 // Libs
 import express from 'express'
 
+
 // Utils
 import setupMiddleware from "./configMiddleware"
 import setupRouters from "./configRouters"
