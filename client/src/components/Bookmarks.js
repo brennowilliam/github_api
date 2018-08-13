@@ -3,6 +3,8 @@ import { connect } from "react-redux"
 
 // Selectors
 import bookmarks$ from "../selectors/bookmarks"
+// Actions
+import { apiFetchBookmarksRequested } from "../actions/repos"
 
 const Bookmarks = props => (
   <div>
@@ -20,7 +22,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  
+  fetchBookmarks: () => {
+    dispatch(apiFetchBookmarksRequested())
+  }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Bookmarks)

@@ -27,7 +27,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onCreateBookmark: id => {
-    dispatch(apiCreateBookmark({ id: id }))
+    dispatch(apiCreateBookmark({ id }))
   }
 })
 

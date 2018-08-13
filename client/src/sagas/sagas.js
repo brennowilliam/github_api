@@ -1,12 +1,6 @@
 import { call, put, takeLatest } from "redux-saga/effects"
 
-function fetchReposFromApi(searchTerm) {
-  return fetch(`api/search/${searchTerm}`)
-    .then(response => {
-      return response.json()
-    })
-}
-
+// Repos
 function* fetchRepos(action) {
  try {
    const data = yield call(fetchReposFromApi, action.payload.search)
@@ -17,12 +11,55 @@ function* fetchRepos(action) {
  }
 }
 
+function fetchReposFromApi(searchTerm) {
+  return fetch(`api/search/${searchTerm}`)
+    .then(response => response.json())
+}
+
+// Bookmarks
 function* fetchBookmarks(action) {
-  yield console.log('fetching bookmarks...')
+  try {
+    const data = yield call(fetchBookmarksFromApi)
+    yield put({ type: 'API_FETCH_BOOKMARKS_SUCCEEDED', payload: data.results })
+ 
+  } catch (error) {
+    yield put({ type: 'API_FETCH_BOOKMARKS_FAILED', error })
+  }
 }
 
 function* createBookmark(action) {
-  yield console.log('Caught by the sagaaaa..')
+  try {
+    yield call(createBookmarkApi, action.payload.id)
+    yield put({ type: 'API_CREATE_BOOKMARKS_SUCCEEDED' })
+    // If succeed, we fetch and save in state.
+    const data = yield call(fetchBookmarksFromApi)
+    yield put({ type: 'API_FETCH_BOOKMARKS_SUCCEEDED', payload: data })
+  } catch (error) {
+    yield put({ type: 'API_CREATE_BOOKMARKS_FAILED', payload: error })
+  }
+}
+
+function fetchBookmarksFromApi() {
+  return fetch('api/bookmarks')
+    .then(response => response.json())
+}
+
+function createBookmarkApi(id) {
+  return fetch(`api/bookmarks`, {
+    method: "POST",
+    mode: "cors",
+    cache: "no-cache",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+    redirect: "follow",
+    referrer: "no-referrer",
+    body: JSON.stringify({ id })
+  })
+  .then(response => {
+    console.log(response)
+    return response.json()
+  })
 }
 
 export default function* watcherSaga() {
@@ -30,19 +67,3 @@ export default function* watcherSaga() {
   yield takeLatest('API_FETCH_BOOKMARKS_REQUESTED', fetchBookmarks)
   yield takeLatest('API_CREATE_BOOKMARK', createBookmark)
 }
-
-// function fetchRepos(action) {
-//   try {
-//     const data = yield call()
-//   }
-//   // await fetch(`api/search/${searchTerm}`)
-//   // .then(response => {
-//   //   this.setState((prevState) => ({ isLoading: !prevState.isLoading }))
-//   //   return response.json()
-//   // })
-//   // .then(response => this.props.onFetchRepos(response.results))
-// }
-
-// export function* watcherSaga() {
-//   yield takeLatest('API_FETCH_REQUEST', fetchRepos)
-// }
