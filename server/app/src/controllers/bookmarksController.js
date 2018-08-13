@@ -6,16 +6,15 @@ class BookmarksController {
   }
 
   create = (req, res) => {
-    console.log("I am here")
-    const newBookmark = req.body
-    const isBookmarked = _.find(this.bookmarks, bookmark => bookmark.id === newBookmark.id)
-
+    const newBookmark = req.body.id
+  
+    const isBookmarked = _.includes(this.bookmarks, newBookmark)
     if (isBookmarked) {
-      res.status(201).json({ error: 'Already bookmarked' })
+        res.status(201).json({ error: 'Already bookmarked' })
     } else {
       this.bookmarks = [...this.bookmarks, newBookmark]
       res.status(201).json(this.bookmarks)
-    }    
+    } 
   }
 
   fetchAll = (req, res) => res.status(200).json(this.bookmarks)
