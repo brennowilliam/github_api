@@ -7,22 +7,22 @@ import SearchForm from "./SearchForm"
 import RepoList from "./RepoList"
 
 // Actions
-import { fetchRepos } from "../actions/repos"
+import { apiFetchReposRequested } from "../actions/repos"
 
 class App extends Component {
   state = {
     isLoading: false
   }
 
-  handleOnSubmit = async (searchTerm) => {
-    this.setState((prevState) => ({ isLoading: !prevState.isLoading }))
-    await fetch(`api/search/${searchTerm}`)
-      .then(response => {
-        this.setState((prevState) => ({ isLoading: !prevState.isLoading }))
-        return response.json()
-      })
-      .then(response => this.props.onFetchRepos(response.results))
-  }
+  // handleOnSubmit = async (searchTerm) => {
+  //   this.setState((prevState) => ({ isLoading: !prevState.isLoading }))
+  //   await fetch(`api/search/${searchTerm}`)
+  //     .then(response => {
+  //       this.setState((prevState) => ({ isLoading: !prevState.isLoading }))
+  //       return response.json()
+  //     })
+  //     .then(response => this.props.onFetchRepos(response.results))
+  // }
 
   render() {
     const styles = {
@@ -40,7 +40,7 @@ class App extends Component {
     return (
       <div>
         {/* <SearchForm onSubmit={this.handleOnSubmit} /> */}
-        <SearchForm />
+        <SearchForm onSubmit={this.props.onSubmit}/>
         {
           this.state.isLoading 
           ? <p> Loading... </p>
@@ -56,8 +56,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onFetchRepos: repos => {
-    dispatch(fetchRepos(repos))
+  onSubmit: repo => {
+    dispatch(apiFetchReposRequested(repo))
   }
 })
 

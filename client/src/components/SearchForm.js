@@ -1,9 +1,8 @@
 import React from "react"
 // Redux
-import { connect } from "react-redux"
+// import { connect } from "react-redux"
 // Actions
-import { fetchRepos } from "../actions/repos"
-import { apiFetchReposRequested, apiFetchBookmarks } from "../actions/repos"
+// import { apiFetchReposRequested, apiFetchBookmarks } from "../actions/repos"
 
 // Local Styles
 const styles = {
@@ -67,9 +66,11 @@ class SearchForm extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  onSubmit: search => {
-    dispatch(apiFetchReposRequested({ search }))
-  }
-})
-export default connect(null, mapDispatchToProps)(SearchForm)
+// `const mapDispatchToProps = dispatch => ({
+//   onSubmit: search => {
+//     dispatch(apiFetchReposRequested({ search }))
+//   }
+// })
+// export default connect(null, mapDispatchToProps)(SearchForm)
+
+export default SearchForm

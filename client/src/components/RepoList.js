@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 // Components
 import RepoListItem from "./RepoListItem"
 // Actions
-import { bookmarkRepo } from "../actions/repos"
+import { apiCreateBookmark } from "../actions/repos"
 
 const handleOnSubmit = repo => {
   console.log(repo)
@@ -15,7 +15,11 @@ const RepoList = props => (
     <h3> Results: </h3>
     {
       props.repos.map(repo => (
-        <RepoListItem key={repo.id} {...repo} onClick={this.handleOnSubmit}/>
+        <RepoListItem 
+          onClick={props.onCreateBookmark} 
+          key={repo.id} 
+          {...repo} 
+        />
       ))
     }
   </div>
@@ -26,8 +30,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onBookmarkRepo: id => {
-    dispatch(bookmarkRepo({id: id }))
+  onCreateBookmark: id => {
+    dispatch(apiCreateBookmark({ id: id }))
   }
 })
 
