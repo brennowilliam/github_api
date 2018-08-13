@@ -39,7 +39,8 @@ class App extends Component {
 
     return (
       <div>
-        <SearchForm onSubmit={this.handleOnSubmit} />
+        {/* <SearchForm onSubmit={this.handleOnSubmit} /> */}
+        <SearchForm />
         {
           this.state.isLoading 
           ? <p> Loading... </p>

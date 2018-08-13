@@ -4,9 +4,14 @@ const RepoListItem = props => (
   <div>
     <div>
       Repo: {props.fullName} | Stars: {props.stars} | Owner: {props.owner} | Forks: {props.forks} 
-      <button>Bookmark</button>
+      <button 
+        // onClick={props.onClick}
+      >
+        Bookmark
+      </button>
     </div>
   </div>
 )
+
 
 export default RepoListItem

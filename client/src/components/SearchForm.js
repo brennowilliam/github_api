@@ -3,6 +3,8 @@ import React from "react"
 import { connect } from "react-redux"
 // Actions
 import { fetchRepos } from "../actions/repos"
+import { apiFetchReposRequested, apiFetchBookmarks } from "../actions/repos"
+
 // Local Styles
 const styles = {
   error: {
@@ -12,7 +14,7 @@ const styles = {
   }
 }
 
-class SearchForm extends React.PureComponent {
+class SearchForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -30,7 +32,8 @@ class SearchForm extends React.PureComponent {
       }))
     } else {
       this.setState(() => ({ error: '' }))
-      this.props.onSubmit(this.state.repoName)
+      // this.props.onSubmit(this.state.repoName)
+      this.props.onSubmit({ search: this.state.repoName })
     }
   }
 
@@ -65,9 +68,8 @@ class SearchForm extends React.PureComponent {
 }
 
 const mapDispatchToProps = dispatch => ({
-  onFetchRepos: repoName => {
-    dispatch(fetchRepos(repoName))
+  onSubmit: search => {
+    dispatch(apiFetchReposRequested({ search }))
   }
 })
-
 export default connect(null, mapDispatchToProps)(SearchForm)
