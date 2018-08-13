@@ -1,8 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
 
-// Selectors
-import bookmarks$ from "../selectors/bookmarks"
 // Actions
 import { apiFetchBookmarksRequested, apiDeleteBookmark } from "../actions/repos"
 
@@ -11,7 +9,7 @@ const Bookmarks = props => (
     <h1>Bookmarks</h1>
     {
       props.bookmarks.map(bookmark => (
-        <div>
+        <div key={bookmark.id}>
           Repo: {bookmark.fullName} | Stars: {bookmark.stars} | Owner: {bookmark.owner} | Forks: {bookmark.forks} 
           <button 
            onClick={() => props.deleteBookmark(bookmark.id)}
