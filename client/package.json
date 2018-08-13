@@ -23,6 +23,7 @@
   },
   "proxy": "http://localhost:3001/",
   "devDependencies": {
+    "jest": "^23.5.0",
     "redux-logger": "^3.0.6"
   }
 }
