@@ -21,9 +21,14 @@ function* fetchBookmarks(action) {
   yield console.log('fetching bookmarks...')
 }
 
+function* createBookmark(action) {
+  yield console.log('Caught by the sagaaaa..')
+}
+
 export default function* watcherSaga() {
   yield takeLatest('API_FETCH_REPOS_REQUESTED', fetchRepos)
   yield takeLatest('API_FETCH_BOOKMARKS_REQUESTED', fetchBookmarks)
+  yield takeLatest('API_CREATE_BOOKMARK', createBookmark)
 }
 
 // function fetchRepos(action) {

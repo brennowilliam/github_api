@@ -1,6 +1,11 @@
 
 const bookmarksReducer = (state = [], action) => {
-  return state
+  switch (action.type) {
+    case 'API_CREATE_BOOKMARK':
+      return [...state, action.payload.id]
+    default:
+      return state
+  }
 }
 
 export default bookmarksReducer

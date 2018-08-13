@@ -6,10 +6,6 @@ import RepoListItem from "./RepoListItem"
 // Actions
 import { apiCreateBookmark } from "../actions/repos"
 
-const handleOnSubmit = repo => {
-  console.log(repo)
-}
-
 const RepoList = props => (
   <div>
     <h3> Results: </h3>
