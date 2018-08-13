@@ -14,5 +14,4 @@ apiRouter.route('/bookmarks')
 
 // DELETE /bookmark/:id -> Delete a bookmark
 apiRouter.delete('/bookmarks/:id', bookmarksCtrl.delete)
-
 export default apiRouter
