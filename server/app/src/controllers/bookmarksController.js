@@ -6,6 +6,7 @@ class BookmarksController {
   }
 
   create = (req, res) => {
+    console.log("I am here")
     const newBookmark = req.body
     const isBookmarked = _.find(this.bookmarks, bookmark => bookmark.id === newBookmark.id)
 
