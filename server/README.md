@@ -33,3 +33,13 @@ my-app/
   package.json
   webpack.config.js
 ```
+
+### API Doc
+
+Here is a basic doc for the API
+
+## Open Endpoints
+* [Search Repo] : `GET /api/search/:term`
+* [Bookmark Repo] : `POST /api/boomarks`
+* [Fetch Bookmarks] : `GET /api/bookmarks`
+* [Delete Bookmark] : `DELETE/api/bookmakrs/:id`
