@@ -6,18 +6,35 @@ import RepoListItem from "./RepoListItem"
 // Actions
 import { apiCreateBookmark } from "../actions/repos"
 
+const styles = {
+  container: {
+    position: 'relative',
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    marginTop: 20
+  },
+  header: {
+    fontSize: '2rem',
+    flex: '0 0 100%',
+    textAlign: 'center'
+  }
+}
+
 const RepoList = props => (
-  <div>
-    <h3> Results: </h3>
-    {
-      props.repos.map(repo => (
-        <RepoListItem 
-          onClick={props.onCreateBookmark} 
-          key={repo.id} 
-          repo={repo} 
-        />
-      ))
-    }
+  <div style={styles.container}>
+    <h3 style={styles.header}> Results </h3>
+    <div>
+      {
+        props.repos.map(repo => (
+          <RepoListItem 
+            onClick={props.onCreateBookmark} 
+            key={repo.id} 
+            repo={repo}
+          />
+        ))
+      }
+    </div>  
   </div>
 )
 

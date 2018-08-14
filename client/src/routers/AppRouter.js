@@ -6,16 +6,26 @@ import App from "../components/App"
 import Bookmarks from "../components/Bookmarks"
 import Header from "../components/Header"
 
+const styles = {
+  container: {
+    width: '100%',
+    height: '100vh',
+    color: '#fff',
+    marginTop: 0,
+    fontFamily: 'Helvetica, Arial, sans-serif'
+  },
+}
+
 const AppRouter = props => {
   return (
     <BrowserRouter>
-      <React.Fragment>
+      <div style={styles.container}>
         <Header />
         <Switch>
           <Route path="/" component={App} exact />
           <Route path="/bookmarks" component={Bookmarks} exact />
         </Switch>
-      </React.Fragment>
+      </div>
     </BrowserRouter>
   )
 }

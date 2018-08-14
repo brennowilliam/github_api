@@ -1,15 +1,41 @@
 import React from "react"
-// Redux
-// import { connect } from "react-redux"
-// Actions
-// import { apiFetchReposRequested, apiFetchBookmarks } from "../actions/repos"
 
 // Local Styles
 const styles = {
-  error: {
-    color: '#f00',
+  formContainer: {
+    position: 'relative',
+    marginTop: 50,
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  form: {
+    fontSize: 24
+  },
+  searchInput: {
+    flex: 2,
+    border: 'none',
+    borderBottom: '2px solid #8bddf7',
+    padding: '1.2rem 1.5rem',
+    background: 'transparent',
+    color: '#8bddf7'
+  },
+  button: {
+    flex: 1,
+    background: '#29bbe8',
+    color: '#fff',
+    border: 'none',
     fontWeight: 'bold',
-    border: "1px solid #f00"
+    padding: '1.2rem 1.5rem'
+  },
+  error: {
+    backgroundColor: "#e5324a",
+    color: "white",
+    fontWeight: "bold",
+    width: "300px",
+    padding: "5px",
+    textAlign: "center",
+    marginTop: "10px",
+    marginBottom: "10px"
   }
 }
 
@@ -31,7 +57,6 @@ class SearchForm extends React.Component {
       }))
     } else {
       this.setState(() => ({ error: '' }))
-      // this.props.onSubmit(this.state.repoName)
       this.props.onSubmit({ search: this.state.repoName })
     }
   }
@@ -43,34 +68,28 @@ class SearchForm extends React.Component {
 
   render() {
     return (  
-      <div>
+      <div style={styles.formContainer}>
         {this.state.error && (
           <div style={styles.error}>
             <p>{this.state.error}</p>
           </div>
         )}
 
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit} style={styles.form}>
         <input 
           type="text"
           placeholder="Enter a repo name"
           autoFocus
           value={this.state.repoName}
           onChange={this.onRepoNameChange}
+          style={styles.searchInput}
         />
 
-        <button>Search</button>
+        <button style={styles.button}>Search</button>
       </form>
     </div>
     )
   }
 }
-
-// `const mapDispatchToProps = dispatch => ({
-//   onSubmit: search => {
-//     dispatch(apiFetchReposRequested({ search }))
-//   }
-// })
-// export default connect(null, mapDispatchToProps)(SearchForm)
 
 export default SearchForm
